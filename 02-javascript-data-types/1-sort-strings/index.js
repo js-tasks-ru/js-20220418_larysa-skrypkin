@@ -12,7 +12,7 @@ export function sortStrings(arr, param = 'asc') {
   case 'desc':
     return makeSorting(arr, -1);
   default:
-    return arr;
+    throw new Error('Parameter error!');
   }
 
   function makeSorting(array, direction) {

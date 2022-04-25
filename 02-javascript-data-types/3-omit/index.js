@@ -6,12 +6,9 @@
  */
 export const omit = (obj, ...fields) => {
   const optionsArray = Object.entries(obj);
-  const optionsKeys = Object.keys(obj);
-
-  let omitOptions = [];
   let finalOptions = [];
 
-  optionsKeys.forEach(opt => fields.includes(opt) ? '' : omitOptions.push(opt));
+  const omitOptions = Object.keys(obj).filter(opt => !fields.includes(opt));
 
   optionsArray.forEach(arr => {
     omitOptions.forEach(el => arr.includes(el) ? finalOptions.push(arr) : ''
@@ -19,17 +16,10 @@ export const omit = (obj, ...fields) => {
   
   });
 
-  const res = finalOptions.length ? makeObjectFromArray(finalOptions) : {};
+  const res = finalOptions.length ? Object.fromEntries(finalOptions) : {};
   return res;
 };
 
-
-function makeObjectFromArray(array) {
-  return array.reduce((elem, acc) => {
-    elem[acc[0]] = acc[1];
-    return elem;
-  }, {});
-}
 
 const fruits = {
   apple: 2,

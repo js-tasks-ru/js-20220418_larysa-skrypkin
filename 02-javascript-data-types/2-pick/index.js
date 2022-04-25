@@ -6,30 +6,12 @@
  */
 
 export const pick = (obj, ...fields) => {
-  const optionsArray = Object.entries(obj);
-  let finalOptions = [];
-  
-  optionsArray.forEach(arr => {
-    fields.forEach(el => {
-      if (!arr.includes(el)) {
-        return;
-      } else {
-        finalOptions.push(arr);
-      }
-    });
-  
-  });
+  const finalOptions = Object.entries(obj).filter(entry => fields.includes(entry[0]));
 
-  const res = finalOptions.length ? makeObjectFromArray(finalOptions) : {};
+  const res = finalOptions.length ? Object.fromEntries(finalOptions) : {};
   return res;
 };
 
-function makeObjectFromArray(array) {
-  return array.reduce((elem, acc) => {
-    elem[acc[0]] = acc[1];
-    return elem;
-  }, {});
-}
 
 const fruits = {
   apple: 2,
