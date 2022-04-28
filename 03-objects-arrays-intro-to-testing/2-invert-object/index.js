@@ -3,6 +3,21 @@
  * @param {object} obj - the initial object
  * @returns {object | undefined} - returns new object or undefined if nothing did't pass
  */
-export function invertObj(obj) {
 
+const obj = { key: 'value' };
+const empty = {};
+
+
+export function invertObj(object) {
+  if (JSON.stringify(object) === '{}') {
+    return {};
+  }
+  if (!object) {
+    return undefined;
+  }
+  const values = Object.entries(object).map(item => item.reverse());
+  return Object.fromEntries(values);
 }
+
+console.log(invertObj(obj)); // { value: 'key'}
+console.log(invertObj(empty)); // {}
