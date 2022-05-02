@@ -30,18 +30,12 @@ export function createGetter(string) {
     if (Object.keys(obj).length === 0) {
       return undefined;
     }
-    switch (values.length) {
-    case 1:
-      return obj[values[0]];
-    case 2:
-      return obj[values[0]][values[1]];
-    case 3:
-      return obj[values[0]][values[1]][values[2]];
-    case 4:
-      return obj[values[0]][values[1]][values[2]][value[4]];
-    default:
-      throw new Error('The value does not exists');
-    }
+
+    values.forEach(val => {
+      obj = obj[val];
+    });
+
+    return obj;
   };
 }
 
@@ -56,4 +50,7 @@ console.log(getter1(product1)); // Goods
 const getter2 = createGetter('category');
 
 console.log(getter2(product2)); // Service
+
+const getter3 = createGetter('nested.property');
+console.log(getter3({}));
 
