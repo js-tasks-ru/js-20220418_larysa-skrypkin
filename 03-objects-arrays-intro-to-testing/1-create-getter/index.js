@@ -32,9 +32,11 @@ export function createGetter(string) {
     }
 
     values.forEach(val => {
+      if (obj[val] === null) {
+        return;
+      }
       obj = obj[val];
     });
-
     return obj;
   };
 }
@@ -54,3 +56,6 @@ console.log(getter2(product2)); // Service
 const getter3 = createGetter('nested.property');
 console.log(getter3({}));
 
+const getter4 = createGetter('test.test');
+const obj = {test: null};
+console.log(getter4(obj));

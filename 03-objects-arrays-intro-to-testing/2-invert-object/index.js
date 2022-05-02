@@ -9,9 +9,6 @@ const empty = {};
 
 
 export function invertObj(object) {
-  if (JSON.stringify(object) === '{}') {
-    return {};
-  }
   if (!object) {
     return undefined;
   }

@@ -15,8 +15,7 @@ export function trimSymbols(string, size) {
   }
   const simbosArray = charSplit(string);
   const res = simbosArray.map(arr => {
-    const length = arr.length - size;
-    const num = arr.length >= size ? length : 0;
+    const num = Math.max(arr.length - size, 0);
     if (num === 0) {
       return arr;
     }
