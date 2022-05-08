@@ -15,7 +15,7 @@ describe('oop-basic-intro-to-dom/column-chart', () => {
   });
 
   afterEach(() => {
-    columnChart.destroy();
+    // columnChart.destroy();
     columnChart = null;
   });
 
@@ -59,7 +59,7 @@ describe('oop-basic-intro-to-dom/column-chart', () => {
   });
 
   it('should have ability to define "formatHeading" function', () => {
-    const formatHeading = data => `USD ${data}`;
+    const formatHeading = data => `$${data}`;
     const value = 100;
 
     columnChart = new ColumnChart({ formatHeading, value });
