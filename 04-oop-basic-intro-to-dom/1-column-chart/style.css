@@ -1,8 +1,8 @@
 /* Component styles */
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap");
 
 body {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 :root {
@@ -102,6 +102,10 @@ body {
 .column-chart__link {
   color: var(--blue);
   text-decoration: none;
+  margin-left: auto;
+}
+.link-disabled {
+  display: none;
 }
 
 .column-chart__header {
