@@ -1,8 +1,8 @@
-const noop = () => {};
+const defaultFormatHeading = value => value;
 
 export default class ColumnChart {
  chartHeight = 50;
- constructor({ data = [], label = '', value = null, link = '', formatHeading = noop} = {}) {
+ constructor({ data = [], label = '', value = null, link = '', formatHeading = defaultFormatHeading} = {}) {
    this.data = data;
    this.label = label;
    this.value = value;
@@ -11,8 +11,8 @@ export default class ColumnChart {
    this.render();
  }
 
- update(array) {
-   this.data = array;
+ update(data) {
+   this.data = data;
    this.render();
  }
 

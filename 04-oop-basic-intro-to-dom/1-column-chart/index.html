@@ -26,12 +26,21 @@
         value: 344,
         link: '#'
       });
-      // ordersChart.update([1,2,3])
+      ordersChart.update([1,2,3])
       const salesChart = new ColumnChart({
         data: salesData,
         label: 'sales',
         value: 243437,
         formatHeading: data => `$${data}`
+        // formatHeading: data => {
+        //   console.log(data)
+        //  return data.toLocaleString('en-US', {
+        //     style: 'currency',
+        //     currency: 'USD',
+        //     maximumFractionDigits: 0 
+        //   });
+    
+        // }
       });
 
       const customersChart = new ColumnChart({
