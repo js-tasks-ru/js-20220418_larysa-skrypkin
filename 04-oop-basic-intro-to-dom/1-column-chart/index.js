@@ -1,19 +1,29 @@
-const noop = () => {};
+const defaultFormatHeading = value => value;
 
 export default class ColumnChart {
  chartHeight = 50;
- constructor({ data = [], label = '', value = null, link = '', formatHeading = noop} = {}) {
+ element = document.querySelector('.column-chart');
+ constructor({ data = [], label = '', value = null, link = '', formatHeading = defaultFormatHeading} = {}) {
    this.data = data;
    this.label = label;
    this.value = value;
    this.link = link;
-   this.formatHeading = formatHeading;
+   this.value = formatHeading(value);
    this.render();
  }
 
- update(array) {
-   this.data = array;
-   this.render();
+ update(data) {
+   this.data = data;
+   const elem = this.element.querySelector('.column-chart__chart');
+   const emptyChartElem = this.element.querySelector('.column-chart_loading');
+   if (emptyChartElem && this.data.length > 0) {
+     emptyChartElem.classList.replace("column-chart_loading", "container");
+   }
+   if (!emptyChartElem && this.data.length === 0) {
+     const newElem = this.element.querySelector('.container');
+     newElem.classList.replace("container", "column-chart_loading");
+   }
+   elem.innerHTML = this.getMarkup();
  }
 
 
@@ -32,7 +42,6 @@ export default class ColumnChart {
 
  getTemplate() {
    const linkClass = this.link ? "column-chart__link" : "link-disabled";
-   const number = this.label === 'sales' ? `${this.formatHeading(this.value)}` : `${this.value}`;
    const container = this.data.length > 0 ? "" : "column-chart_loading";
 
    return `
@@ -42,13 +51,13 @@ export default class ColumnChart {
       </div>
       <div class=${container}>
            <div class="column-chart__container">
-        <div data-element="header" class="column-chart__header">${number}</div>
+        <div data-element="header" class="column-chart__header">${this.value}</div>
         <div data-element="body" class="column-chart__chart">
         ${this.getMarkup()}
         </div>
       </div>
       </div>
-      <div>
+      </div>
      `;
  }
 
@@ -57,5 +66,5 @@ export default class ColumnChart {
    element.innerHTML = this.getTemplate();
    this.element = element.firstElementChild;
  }
-
+ 
 }
