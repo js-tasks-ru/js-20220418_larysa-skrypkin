@@ -66,4 +66,5 @@ export default class ColumnChart {
    element.innerHTML = this.getTemplate();
    this.element = element.firstElementChild;
  }
+ 
 }
